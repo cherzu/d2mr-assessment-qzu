@@ -1,0 +1,61 @@
+---
+title: "hello_world_adlib_story_maker"
+format: html
+editor: visual
+---
+
+```{r}
+library(stringr)
+```
+
+```{r}
+# Define the hello_world ()function
+hello_world <- function(your_name, adverb, adjective, fav_food) {
+  
+  # Conditional statement to have different return values, based on whether the       input adverb is ended by "ly"
+  if (str_detect(adverb, "ly$")) {
+    greeting <- paste("Whoa!", your_name, "just entered the chat", adverb, "!")
+  } else {
+    greeting <- paste(your_name, "walks in with a mysterious aura...")
+  }
+  
+  # Story template. Using str_glue to insert variables inside the strings
+  story <- str_glue("
+    {greeting} Today, {your_name} is feeling {adjective}. 
+    Suddenly, a wild chef appears and offers {your_name} some delicious {fav_food}.
+    
+    'But wait!' the chef exclaims, 'You must pass the first!'
+  ")
+  
+  print(story)
+  
+  # While loop for the quiz. If the user's response is not "yes", then they cannot    get out of the loop. So they are "forced" to answer "yes" :)
+  correct_answer <- "YES"
+  user_response <- ""
+  # Toupper() converts all lowercase letters in a string to uppercase. So if the      user answers "yes", it will be converted to "YES"
+  while (toupper(user_response) != correct_answer) {
+    user_response <- readline("Do you love food? (YES/NO): ")
+    if (toupper(user_response) == "NO") {
+      print("The chef gasps! 'Lies! Try again!'")
+    }
+  }
+  
+  print(paste("Chef beams proudly. 'You have great taste,", your_name, "! Enjoy your", fav_food, "!'"))
+}
+```
+
+
+
+**Welcome to Cher's Madlib. Please fill in the blank string variables below, and then run all the cells to generate your story! :)**
+
+
+
+```{r}
+name = "Natalie"
+adverb = "cooly"
+adjective = "amazing"
+favorite_food = "french fries"
+
+hello_world(name, adverb, adjective, favorite_food)
+```
+
